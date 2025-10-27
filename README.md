@@ -1,4 +1,3 @@
-```markdown
 # DQN GridWorld Visualizer
 
 Professional Streamlit app for experimenting with DQN variants on a configurable GridWorld.
@@ -21,7 +20,6 @@ reinforcement-learning agents and simple adversarial defenders.
 
 ---
 
-## Requirements
 ## Requirements
 
 - Python 3.8+
