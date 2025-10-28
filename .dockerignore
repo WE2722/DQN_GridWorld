@@ -1,0 +1,51 @@
+# Git
+.git
+.gitignore
+.github
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info
+dist
+build
+.venv
+venv
+env
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific
+*.bat
+*.ps1
+*.sh
+*.vbs
+*.md
+!README.md
+tests/
+.pytest_cache
+.coverage
+htmlcov
+
+# DevContainer and Gitpod
+.devcontainer
+.gitpod.yml
+
+# Docker
+Dockerfile
+.dockerignore
+docker-compose.yml
