@@ -7,6 +7,17 @@ reinforcement-learning agents and simple adversarial defenders.
 **Repository:** https://github.com/WE2722/DQN_GridWorld  
 **Author:** WE2722
 
+## 🚀 Try it in Your Browser!
+
+Run this app without installing anything:
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/WE2722/DQN_GridWorld)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/WE2722/DQN_GridWorld)
+
+See [RUN_IN_BROWSER.md](RUN_IN_BROWSER.md) for detailed instructions.
+
+---
+
 ## Table of Contents
 - [Requirements](#requirements)
 - [Quick Start](#quick-start)

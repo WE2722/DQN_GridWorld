@@ -1,0 +1,17 @@
+tasks:
+  - name: Install dependencies and run app
+    init: pip install -r requirements.txt
+    command: |
+      echo "🎮 Welcome to DQN GridWorld!"
+      echo "To start the app, run: streamlit run app.py"
+      echo "The app will open automatically in your browser."
+
+ports:
+  - port: 8501
+    onOpen: open-browser
+    visibility: public
+
+vscode:
+  extensions:
+    - ms-python.python
+    - ms-python.vscode-pylance
