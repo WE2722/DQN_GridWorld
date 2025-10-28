@@ -1,8 +1,8 @@
-streamlit
-numpy
-torch
-pandas
-matplotlib
-pillow
-gym
+streamlit>=1.50.0
+numpy>=1.21.0
+torch>=2.0.0
+pandas>=1.3.0
+matplotlib>=3.4.0
+pillow>=8.0.0
+gym>=0.21.0
 pytest>=7.0.0
