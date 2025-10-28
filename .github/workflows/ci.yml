@@ -12,7 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.9, 3.10, 3.11]
+        python-version: ["3.9", "3.10", "3.11"]
+      fail-fast: false  # Don't cancel other jobs if one fails
 
     steps:
       - name: Checkout
@@ -37,22 +38,13 @@ jobs:
 
       - name: Syntax check (compile Python files)
         run: |
-          python - <<'PY'
-          import sys, compileall
-          ok = compileall.compile_dir('.', force=False, quiet=1)
-          if not ok:
-              sys.exit(1)
-          PY
+          python -c "import sys, compileall; sys.exit(0 if compileall.compile_dir('.', force=False, quiet=1) else 1)"
 
-      - name: Run tests (pytest) if present
-        shell: bash -l {0}
+      - name: Run tests (pytest)
         run: |
-          # Robust test detection:
-          # - If there is a tests/ directory or any test_*.py files at repo root, run pytest.
-          # - Otherwise skip pytest. Any pytest failures will still fail the job.
           if [ -d tests ] || ls test_*.py >/dev/null 2>&1; then
-            echo "Test files detected: running pytest"
-            pytest -q
+            echo "Running pytest..."
+            pytest -v --tb=short
           else
             echo "No tests found, skipping pytest"
           fi

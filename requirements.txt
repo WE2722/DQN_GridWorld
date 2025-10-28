@@ -4,3 +4,4 @@ torch
 pandas
 matplotlib
 pillow
+pytest>=7.0.0
