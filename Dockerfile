@@ -10,13 +10,14 @@ ENV PYTHONUNBUFFERED=1 \
 WORKDIR /app
 
 # Copy only requirements first (for better caching)
-COPY requirements.txt /app/requirements.txt
+COPY requirements.txt requirements-docker.txt /app/
 
 # Install system dependencies and Python packages
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     && pip install --no-cache-dir --upgrade pip setuptools wheel \
-    && pip install --no-cache-dir -r /app/requirements.txt \
+    && pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu \
+    && pip install --no-cache-dir -r /app/requirements-docker.txt \
     && apt-get remove -y build-essential \
     && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
