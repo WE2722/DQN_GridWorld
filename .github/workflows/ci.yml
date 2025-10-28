@@ -45,8 +45,13 @@ jobs:
           PY
 
       - name: Run tests (pytest) if present
+        shell: bash -l {0}
         run: |
-          if [ -d tests ] || ls -1 test_*.py 2>/dev/null | grep -q .; then
+          # Robust test detection:
+          # - If there is a tests/ directory or any test_*.py files at repo root, run pytest.
+          # - Otherwise skip pytest. Any pytest failures will still fail the job.
+          if [ -d tests ] || ls test_*.py >/dev/null 2>&1; then
+            echo "Test files detected: running pytest"
             pytest -q
           else
             echo "No tests found, skipping pytest"
