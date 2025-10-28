@@ -1,5 +1,9 @@
 # DQN GridWorld Visualizer
 
+[![CI](https://github.com/WE2722/DQN_GridWorld/actions/workflows/ci.yml/badge.svg)](https://github.com/WE2722/DQN_GridWorld/actions/workflows/ci.yml)
+[![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 Professional Streamlit app for experimenting with DQN variants on a configurable GridWorld.
 This project is designed for interactive research, teaching, and rapid prototyping of
 reinforcement-learning agents and simple adversarial defenders.
@@ -14,7 +18,7 @@ Run this app without installing anything:
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/WE2722/DQN_GridWorld)
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/WE2722/DQN_GridWorld)
 
-See [RUN_IN_BROWSER.md](RUN_IN_BROWSER.md) for detailed instructions.
+**No setup required!** GitHub Codespaces provides a complete development environment in your browser with all dependencies pre-installed. See [RUN_IN_BROWSER.md](RUN_IN_BROWSER.md) for detailed instructions.
 
 ---
 
@@ -22,18 +26,20 @@ See [RUN_IN_BROWSER.md](RUN_IN_BROWSER.md) for detailed instructions.
 - [Requirements](#requirements)
 - [Quick Start](#quick-start)
 - [Main Features](#main-features)
+- [Testing](#testing)
 - [UI Guide](#ui-guide)
 - [Example Workflows](#example-workflows)
 - [File Overview](#file-overview)
 - [Reproducibility & Tips](#reproducibility--tips)
 - [Limitations](#limitations)
+- [Contributing](#contributing)
 - [License](#license)
 
 ---
 
 ## Requirements
 
-- Python 3.8+
+- Python 3.9+ (tested on 3.9, 3.10, 3.11)
 - Required packages (see `requirements.txt`):
   - streamlit
   - numpy
@@ -41,6 +47,10 @@ See [RUN_IN_BROWSER.md](RUN_IN_BROWSER.md) for detailed instructions.
   - pandas
   - matplotlib
   - pillow
+  - gym
+
+**Development Dependencies:**
+- pytest>=7.0.0 (for running tests)
 
 ---
 
@@ -79,6 +89,78 @@ pip install -r requirements.txt
 ```bash
 streamlit run app.py
 ```
+
+---
+
+## Testing
+
+This project includes a comprehensive test suite with 16 tests covering all core components.
+
+### Running Tests Locally
+
+```bash
+# Install test dependencies
+pip install pytest>=7.0.0
+
+# Run all tests
+pytest
+
+# Run with verbose output
+pytest -v
+
+# Run specific test file
+pytest tests/test_dqn.py
+```
+
+### Test Coverage
+
+- **DQN Components** (`tests/test_dqn.py`): 8 tests
+  - QNetwork architecture and forward pass
+  - ReplayBuffer operations (add, sample)
+  - DQNAgent variants (vanilla, deepmind, double)
+  
+- **GridWorld Environment** (`tests/test_grid_env.py`): 5 tests
+  - Environment creation with various configurations
+  - Reset functionality
+  - Step mechanics and transitions
+  - Action space validation
+  - Boundary handling
+
+- **Training Functions** (`tests/test_train.py`): 3 tests
+  - Training generator functionality
+  - Episode completion
+  - Reward tracking
+
+### Continuous Integration
+
+All tests run automatically on every push via GitHub Actions:
+- ✅ Python 3.9, 3.10, 3.11 compatibility
+- ✅ Docker build validation
+- ✅ Cross-platform testing (Ubuntu)
+
+View CI status: [GitHub Actions](https://github.com/WE2722/DQN_GridWorld/actions)
+
+---
+
+## Usage Guide
+
+### 1. Environment Configuration
+- **Grid Size**: 5x5 to 20x20
+- **Goals**: Multiple goals with different reward values
+- **Obstacles**: Static barriers with negative rewards
+- **Defenders**: Mobile agents that chase the player (tabular or DQN-based)
+- **Reset Modes**: Fixed or random goal/obstacle positions
+
+### 2. DQN Variants
+- **Vanilla DQN**: Classic Deep Q-Network with experience replay
+- **DeepMind DQN**: Enhanced version with target network and optimized hyperparameters
+- **Double DQN**: Reduces overestimation using separate action selection and evaluation
+
+### 3. Training & Visualization
+- **Live Training**: Real-time episode rewards, Q-value plots, epsilon decay
+- **Logs Export**: Download training logs, final Q-table, policy arrays
+- **Grid Visualization**: Interactive grid showing agent, goals, obstacles, defenders
+- **Episode Replay**: Watch trained agents navigate the environment
 
 ---
 
@@ -178,8 +260,20 @@ DQN_GridWorld/
 ├── train.py                        # Generator-based training loops
 ├── defenders.py                    # Defender policy training (tabular + DQN)
 ├── requirements.txt                # Python dependencies
+├── Dockerfile                      # Docker containerization
 ├── Launch_DQN_GridWorld.bat       # Windows launcher
-├── create_desktop_shortcut.bat    # Desktop shortcut creator
+├── run_app.bat                    # Windows app runner
+├── run_app.ps1                    # PowerShell app runner
+├── tests/                         # Test suite (pytest)
+│   ├── test_dqn.py               # DQN component tests
+│   ├── test_grid_env.py          # Environment tests
+│   └── test_train.py             # Training function tests
+├── .github/workflows/             # CI/CD configuration
+│   └── ci.yml                    # GitHub Actions workflow
+├── .devcontainer/                 # GitHub Codespaces config
+│   └── devcontainer.json
+├── .gitpod.yml                    # Gitpod workspace config
+├── RUN_IN_BROWSER.md             # Browser-based testing guide
 └── README.md                       # This file
 ```
 
@@ -239,6 +333,68 @@ DQN_GridWorld/
 - **Add prioritized replay**: Implement prioritized experience replay configurable from the UI
 - **Model save/load**: Add buttons for saving and loading trained models
 - **Multi-agent simultaneous training**: Agents and defenders co-learning
+
+---
+
+## Contributing
+
+Contributions are welcome! Here's how to contribute:
+
+### Setting Up Development Environment
+
+1. Fork the repository
+2. Clone your fork:
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/DQN_GridWorld.git
+   cd DQN_GridWorld
+   ```
+
+3. Install dependencies (including dev dependencies):
+   ```bash
+   pip install -r requirements.txt
+   pip install pytest>=7.0.0
+   ```
+
+4. Run tests to ensure everything works:
+   ```bash
+   pytest -v
+   ```
+
+### Making Changes
+
+1. Create a new branch:
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+
+2. Make your changes and add tests if applicable
+
+3. Run the test suite:
+   ```bash
+   pytest
+   ```
+
+4. Commit your changes:
+   ```bash
+   git add .
+   git commit -m "Description of your changes"
+   ```
+
+5. Push to your fork:
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+
+6. Create a Pull Request on GitHub
+
+### CI/CD Pipeline
+
+All pull requests automatically run through our CI pipeline:
+- ✅ Tests on Python 3.9, 3.10, 3.11
+- ✅ Docker build validation
+- ✅ Code quality checks
+
+Your PR must pass all checks before it can be merged.
 
 ---
 
