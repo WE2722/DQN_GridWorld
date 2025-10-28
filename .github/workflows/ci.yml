@@ -59,5 +59,6 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build Docker image
+        working-directory: ./DQN_light_vs_deepmind
         run: |
           docker build -t dqn-gridworld:ci .
