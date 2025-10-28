@@ -4,3 +4,5 @@ torch
 pandas
 matplotlib
 pillow
+gym
+pytest>=7.0.0
