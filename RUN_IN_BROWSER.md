@@ -9,21 +9,33 @@ Users can run this app directly from GitHub without installing anything!
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/WE2722/DQN_GridWorld)
 
 ### Steps:
-1. Click the badge above or go to the repository
-2. Click the **"Code"** button → **"Codespaces"** tab
+1. Click the badge above or go to: https://github.com/WE2722/DQN_GridWorld
+2. Click the green **"Code"** button → **"Codespaces"** tab
 3. Click **"Create codespace on main"**
-4. Wait for the environment to build (2-3 minutes)
-5. In the terminal that opens, run:
+4. **Wait 3-5 minutes** for the environment to build and install dependencies
+   - You'll see: "✅ Dependencies installed! Run: streamlit run app.py"
+5. In the terminal at the bottom, run:
    ```bash
    streamlit run app.py
    ```
-6. Click the popup to open the app in your browser!
+6. A popup will appear saying "Your application is available on port 8501"
+7. Click **"Open in Browser"** - your app will open in a new tab!
+
+**Important Notes:**
+- ⏳ First setup takes 3-5 minutes (installing torch, numpy, etc.)
+- ✅ Dependencies auto-install via `postCreateCommand`
+- 🔄 Next time you use the same codespace, it'll be instant!
+- 🆓 Free 60 hours/month for GitHub users
+- 💾 Your codespace saves your work
+
+**Template to choose:** 
+- **Blank** (the default Python template) - our `.devcontainer` config will handle everything!
 
 **Features:**
 - ✅ Runs in your browser (no local installation)
 - ✅ Full VS Code environment
-- ✅ Free 60 hours/month for GitHub users
 - ✅ All dependencies auto-installed
+- ✅ Port forwarding automatic
 
 ---
 

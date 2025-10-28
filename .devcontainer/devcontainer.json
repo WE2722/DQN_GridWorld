@@ -2,7 +2,7 @@
   "name": "DQN GridWorld",
   "image": "mcr.microsoft.com/devcontainers/python:3.11",
   
-  "postCreateCommand": "pip install -r requirements.txt",
+  "postCreateCommand": "pip install -r requirements.txt && echo '✅ Dependencies installed! Run: streamlit run app.py'",
   
   "forwardPorts": [8501],
   
@@ -20,8 +20,16 @@
         "ms-python.vscode-pylance"
       ],
       "settings": {
-        "python.defaultInterpreterPath": "/usr/local/bin/python"
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "terminal.integrated.shell.linux": "/bin/bash"
       }
+    }
+  },
+  
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": false,
+      "installOhMyZsh": false
     }
   }
 }
